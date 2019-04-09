@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="mysqlgenerator" targetRuntime="MyBatis3">
+        <property name="autoDelimitKeywords" value="true"/>
+        <!--可以使用``包括字段名，避免字段名与sql保留字冲突报错-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 自动生成toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!-- 自动生成equals方法和hashcode方法 -->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+
+        <!-- 非官方插件 https://github.com/itfsw/mybatis-generator-plugin -->
+        <!-- 查询单条数据插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>
+        <!-- 查询结果选择性返回插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectSelectivePlugin"/>
+        <!-- Example Criteria 增强插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ExampleEnhancedPlugin"/>
+        <!-- 数据Model属性对应Column获取插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>
+        <!--数据model链式构建插件-->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelBuilderPlugin"/>
+
+        <!-- 逻辑删除插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LogicalDeletePlugin">
+            <!-- 这里配置的是全局逻辑删除列和逻辑删除值，当然在table中配置的值会覆盖该全局配置 -->
+            <!-- 逻辑删除列类型只能为数字、字符串或者布尔类型 -->
+            <property name="logicalDeleteColumn" value="del_flag"/>
+            <!-- 逻辑删除-已删除值 -->
+            <property name="logicalDeleteValue" value="1"/>
+            <!-- 逻辑删除-未删除值 -->
+            <property name="logicalUnDeleteValue" value="0"/>
+        </plugin>
+        <!--乐观锁插件-->
+        <plugin type="com.itfsw.mybatis.generator.plugins.OptimisticLockerPlugin"/>
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!--<property name="suppressAllComments" value="true"/>-->
+        </commentGenerator>
+
+        <!--数据库连接信息-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/yw_store?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT&amp;allowPublicKeyRetrieval=true"
+                        userId="root"
+                        password="root">
+            <!--设置可以获取tables remarks信息-->
+            <property name="useInformationSchema" value="true"/>
+            <!--设置可以获取remarks信息-->
+            <property name="remarks" value="true"/>
+            <!-- connectionURL属性，防止乱码 -->
+            <property name="useUnicode" value="true"/>
+            <!-- connectionURL属性，防止生成不同数据库同名表的代码 -->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+        <javaModelGenerator targetPackage="com.feng.customer.model" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="com.feng.customer.mapper" targetProject="src/main/resources"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.feng.customer.mapper"
+                             targetProject="src/main/java"/>
+
+                <table tableName="tb_customer">
+                    <property name="versionColumn" value="version"/>
+                    <generatedKey column="customer_id" sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="last_login_time"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_open_time"/>
+                </table>
+        <!--        <table tableName="tb_customer_address">
+                    <generatedKey column="address_id" sqlStatement="MySql" identity="true"/>
+                </table>-->
+        <!--        <table tableName="tb_yw_product">
+                    <generatedKey column="product_id" sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--        <table tableName="tb_product_attributes">
+                    <generatedKey column="product_attributes_id" sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>&ndash;&gt;-->
+        <!--       <table tableName="tb_product_category">
+               <generatedKey column="product_category_id" sqlStatement="MySql" identity="true"/>
+               <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+               <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+               </table>-->
+        <!--        <table tableName="tb_product_image">
+                <generatedKey column="product_image_id" sqlStatement="MySql" identity="true"/>
+                <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--        <table tableName="tb_category">
+                <generatedKey column="category_id" sqlStatement="MySql" identity="true"/>
+                <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--     <table tableName="tb_voucher">
+                 <generatedKey column="voucher_id" sqlStatement="MySql" identity="true"/>
+                 <columnOverride javaType="java.time.LocalDateTime" column="begin_date"/>
+                 <columnOverride javaType="java.time.LocalDateTime" column="end_date"/>
+                 <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                 <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+             </table>-->
+        <!--                <table tableName="tb_voucher_user">
+                            <generatedKey column="voucher_user_id" sqlStatement="MySql" identity="true"/>
+                            <columnOverride javaType="java.time.LocalDateTime" column="end_date" />
+                            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                            <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                        </table>-->
+        <!--      <table tableName="tb_promotion">
+                  <property name="logicalDeleteColumn" value="deleted" />
+                  <generatedKey column="promotion_id" sqlStatement="MySql" identity="true"/>
+                  <columnOverride javaType="java.time.LocalDateTime" column="begin_date"/>
+                  <columnOverride javaType="java.time.LocalDateTime" column="end_date"/>
+                  <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                  <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+              </table>-->
+        <!--                <table tableName="tb_shopping_cart">
+                            <generatedKey column="cart_id"  sqlStatement="MySql" identity="true"/>
+                            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                            <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                        </table>-->
+        <!--                <table tableName="tb_shopping_cart_detail">
+                            <generatedKey column="cart_detail_id"  sqlStatement="MySql" identity="true"/>
+                            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                            <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                        </table>-->
+    <!--                <table tableName="tb_order">
+                        <property name="logicalDeleteColumn" value="deleted"/>
+                        <generatedKey column="order_id" sqlStatement="MySql" identity="true"/>
+                        <columnOverride javaType="java.time.LocalDateTime" column="wechat_payment_date"/>
+                        <columnOverride javaType="java.time.LocalDateTime" column="delivery_time"/>
+                        <columnOverride javaType="java.time.LocalDateTime" column="confirm_time"/>
+                        <columnOverride javaType="java.time.LocalDateTime" column="order_closing_time"/>
+                        <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                        <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                        <columnOverride javaType="java.time.LocalDateTime" column="pay_date"/>
+                        <columnOverride javaType="java.time.LocalDateTime" column="confirm_pay_date"/>
+                        <columnOverride javaType="java.time.LocalDateTime" column="false_order_date"/>
+                    </table>-->
+           <!--      <table tableName="tb_order_detail">
+                     <generatedKey column="id"  sqlStatement="MySql" identity="true"/>
+                     <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                     <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                 </table>-->
+        <!--        <table tableName="tb_after_sale">
+                    <generatedKey column="id"  sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--        <table tableName="tb_after_sale_image">
+                    <generatedKey column="id"  sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--        <table tableName="tb_banner">
+                    <generatedKey column="id"  sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--        <table tableName="tb_help_center">
+                    <generatedKey column="id"  sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+
+        <!--     <table tableName="tb_evaluate">
+                 <property name="logicalDeleteColumn" value="deleted"/>
+                 <generatedKey column="evaluate_id" sqlStatement="MySql" identity="true"/>
+                 <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                 <columnOverride javaType="java.time.LocalDateTime" column="evaluate_date"/>
+             </table>-->
+
+        <!-- <table tableName="tb_evaluate_img">
+             <property name="logicalDeleteColumn" value="deleted"/>
+             <generatedKey column="evaluate_img_id" sqlStatement="MySql" identity="true"/>
+             <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+             <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+         </table>-->
+
+        <!--  <table tableName="tb_sender">
+              <generatedKey column="sender_id" sqlStatement="MySql" identity="true"/>
+              <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+              <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+          </table>-->
+
+        <!--  <table tableName="tb_shop_below_product">
+              <generatedKey column="below_product_id" sqlStatement="MySql" identity="true"/>
+              <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+              <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+          </table>-->
+
+        <!--           <table tableName="tb_shop_order">
+                       <property name="logicalDeleteColumn" value="shop_deleted"/>
+
+                       <generatedKey column="shop_order_id" sqlStatement="MySql" identity="true"/>
+                       <columnOverride javaType="java.time.LocalDateTime" column="shop_create_date"/>
+                       <columnOverride javaType="java.time.LocalDateTime" column="shop_update_date"/>
+                       <columnOverride javaType="java.time.LocalDateTime" column="shop_delivery_time"/>
+                       <columnOverride javaType="java.time.LocalDateTime" column="shop_pay_date"/>
+                       <columnOverride javaType="java.time.LocalDateTime" column="shop_order_closing_time"/>
+                       <columnOverride javaType="java.time.LocalDateTime" column="shop_confirm_time"/>
+                       <columnOverride javaType="java.lang.String" column="shop_remarks" jdbcType="VARCHAR"/>
+                       <columnOverride javaType="java.lang.String" column="shop_official_note" jdbcType="VARCHAR"/>
+                   </table>-->
+        <!--        <table tableName="tb_shop_order_detail">
+                    <property name="logicalDeleteColumn" value="deleted"/>
+                    <generatedKey column="shop_detail_id" sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--        <table tableName="tb_shop_order">
+                    <property name="logicalDeleteColumn" value="deleted" />
+                    <generatedKey column="shop_order_id"  sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_delivery_time"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_confirm_time"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_order_closing_time"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_update_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_pay_date"/>
+                    <columnOverride column="shop_remarks" jdbcType="VARCHAR" />
+                    <columnOverride column="shop_officialNote" jdbcType="VARCHAR" />
+                </table>-->
+        <!--        <table tableName="tb_shop_order_detail">
+                    <generatedKey column="shop_detail_id" sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--        <table tableName="tb_form_id">
+                    <generatedKey column="id" sqlStatement="MySql" identity="true" />
+                    <columnOverride column="expire_time" javaType="java.time.LocalDateTime" />
+                </table>-->
+        <!--        <table tableName="tb_distribution_parameter">
+                    <generatedKey column="id" sqlStatement="MySql" identity="true" />
+                </table>-->
+        <!--        <table tableName="tb_open_shop_pay">
+                    <generatedKey column="open_shop_pay_id" sqlStatement="MySql" identity="true"/>
+                    <columnOverride column="wechat_payment_date" javaType="java.time.LocalDateTime"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--        <table tableName="tb_distribution_record">
+                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="pay_time"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+                </table>-->
+        <!--<table tableName="tb_withdraw">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="update_date"/>
+        </table>-->
+        <!--<table tableName="tb_shop_below_promotion">-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--<columnOverride javaType="java.time.LocalDateTime" column="create_date"/>-->
+        <!--<columnOverride javaType="java.time.LocalDateTime" column="update_date"/>-->
+        <!--</table>-->
+        <!--        <table tableName="tb_shop_after_sale">
+                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_update_date"/>
+                    <columnOverride column="shop_problem" jdbcType="VARCHAR"/>
+                    <columnOverride column="shop_answer" jdbcType="VARCHAR"/>
+                </table>-->
+        <!--        <table tableName="tb_shop_after_sale_image">
+                    <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_create_date"/>
+                    <columnOverride javaType="java.time.LocalDateTime" column="shop_update_date"/>
+                </table>-->
+        <!--             <table tableName="tb_customer_level">
+                         <generatedKey column="level_id" sqlStatement="MySql" identity="true"/>
+                     </table>-->
+        <!--<table tableName="tb_name_attestation">-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--<columnOverride javaType="java.time.LocalDateTime" column="create_date"/>-->
+        <!--<columnOverride javaType="java.time.LocalDateTime" column="update_date"/>-->
+        <!--</table>-->
+<!--        <table tableName="tb_warehouse">
+            <generatedKey column="warehouse_id" sqlStatement="MySql" identity="true"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="freeze_date"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="conversion_date"/>
+        </table>-->
+<!--        <table tableName="tb_product">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="update_tate"/>
+        </table>
+        <table tableName="tb_product_detail">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="update_tate"/>
+        </table>-->
+<!--        <table tableName="tb_order">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="delivery_time"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="confirm_time"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="order_closing_time"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="update_tate"/>
+        </table>
+        <table tableName="tb_order_detail">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="update_tate"/>
+        </table>-->
+        <!--积分明细-->
+        <!--     <table tableName="tb_score_detail">
+                 <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+                 <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+             </table>-->
+        <!--杂项配置-->
+     <!--   <table tableName="tb_parameters">
+        <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        &lt;!&ndash;<columnOverride javaType="java.time.LocalDateTime" column="create_date"/>&ndash;&gt;
+        </table>-->
+        <!--签到表-->
+        <!--    <table tableName="tb_attendance">
+                <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+                <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+            </table>
+            &lt;!&ndash;签到表&ndash;&gt;
+            <table tableName="tb_customer_attendance">
+                <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+                <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+            </table>-->
+        <!--钱包明细-->
+        <!--<table tableName="tb_money_detail">-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--<columnOverride javaType="java.time.LocalDateTime" column="create_date"/>-->
+        <!--</table>-->
+        <!--流程表-->
+        <!--<table tableName="tb_flow_path">-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--<columnOverride javaType="java.time.LocalDateTime" column="create_date"/>-->
+        <!--</table>-->
+
+        <!--支付表-->
+   <!--     <table tableName="Tb_Pay">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride javaType="java.time.LocalDateTime" column="create_date"/>
+        </table>-->
+
+    </context>
+</generatorConfiguration>
