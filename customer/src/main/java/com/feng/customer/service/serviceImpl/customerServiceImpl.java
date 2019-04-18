@@ -1,9 +1,9 @@
 package com.feng.customer.service.serviceImpl;
 
 import com.feng.customer.mapper.TbCustomerMapper;
+import com.feng.customer.model.TbCustomer;
 import com.feng.customer.service.customerService;
 import com.feng.customer_api.domain.CustomerParam;
-import com.feng.customer_api.model.TbCustomer;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,8 @@ import java.util.List;
  **/
 @Service
 public class customerServiceImpl implements customerService {
-
+@Autowired
+private TbCustomerMapper tbCustomerMapper;
 
     @Override
     public TbCustomer login(String code, String encrypteData, String iv, Integer customerOwnerId, HttpServletRequest request) {
@@ -32,7 +33,8 @@ public class customerServiceImpl implements customerService {
 
     @Override
     public TbCustomer findOne(Integer customerId) {
-        return null;
+        TbCustomer tbCustomer = tbCustomerMapper.selectByPrimaryKey(customerId);
+        return tbCustomer;
     }
 
     @Override

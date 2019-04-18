@@ -7,11 +7,12 @@
         <groupId>com.feng</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>customer_api</artifactId>
-    <dependencies>
+    <version>0.0.1-SNAPSHOT</version>
 
+    <dependencies>
         <!-- 接口文档 -->
         <dependency>
             <groupId>io.springfox</groupId>

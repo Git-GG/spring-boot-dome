@@ -20,14 +20,17 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+
     </properties>
 
     <modules>
         <module>eureka_service</module>
         <module>customer</module>
         <module>APi</module>
-        <module>API</module>
+        <module>API/customer_api</module>
+        <module>fegin</module>
     </modules>
+
 
     <dependencies>
         <dependency>
@@ -45,7 +48,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -57,14 +59,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>

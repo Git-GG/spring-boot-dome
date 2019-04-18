@@ -1,4 +1,4 @@
-package com.feng.customer_api.model;
+package com.feng.customer.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

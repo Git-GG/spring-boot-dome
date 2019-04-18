@@ -1,10 +1,12 @@
 package com.feng.customer.controller;
 
+import com.feng.customer.model.TbCustomer;
 import com.feng.customer.service.customerService;
+
 import com.feng.customer_api.bean.ResponseBean;
+
 import com.feng.customer_api.controller.CustomerController;
 import com.feng.customer_api.domain.CustomerParam;
-import com.feng.customer_api.model.TbCustomer;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -88,6 +90,7 @@ public class CustomerControllerImpl extends ResponseBean implements CustomerCont
     @Override
     public Object findOne(@RequestParam(value = "customerId") Integer customerId) {
         Map<String, Object> map = new HashMap<>();
+        System.out.println("jifsd");
         TbCustomer customer = customerService.findOne(customerId);
         map.put("customer", customer);
         return ok(map);
