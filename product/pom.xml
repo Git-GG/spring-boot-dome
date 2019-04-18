@@ -9,12 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fegin</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>customer_fegin</module>
-        <module>product_fegin</module>
-    </modules>
+    <artifactId>product</artifactId>
 
 
 </project>

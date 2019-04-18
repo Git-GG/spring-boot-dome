@@ -13,7 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>customer_api</module>
-    </modules>
+		<module>product_api</module>
+	</modules>
 
 <dependencies>
     <!--集成lombok插件-->
