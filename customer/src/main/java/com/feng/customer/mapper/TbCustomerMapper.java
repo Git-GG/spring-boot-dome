@@ -1,9 +1,12 @@
 package com.feng.customer.mapper;
 
-import com.feng.customer.model.TbCustomer;
-import com.feng.customer.model.TbCustomerExample;
-import java.util.List;
+
+
+import com.feng.customer_api.model.TbCustomer;
+import com.feng.customer_api.model.TbCustomerExample;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TbCustomerMapper {
     /**

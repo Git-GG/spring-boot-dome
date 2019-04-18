@@ -15,5 +15,12 @@
         <module>customer_api</module>
     </modules>
 
-
+<dependencies>
+    <!--集成lombok插件-->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.4</version>
+    </dependency>
+</dependencies>
 </project>
