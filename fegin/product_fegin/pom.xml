@@ -11,5 +11,11 @@
 
     <artifactId>product_fegin</artifactId>
 
-
+<dependencies>
+    <dependency>
+        <groupId>com.feng</groupId>
+        <artifactId>product_api</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+</dependencies>
 </project>

@@ -1,16 +1,17 @@
-package com.feng.product_api.controller;
+package com.feng.product_fegin;
 
 import com.feng.product_api.domain.YwProductsVo;
-import org.springframework.stereotype.Controller;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/product")
+@FeignClient(value = "product")
+@RequestMapping
 @RestController
-public interface ProductController {
-    @GetMapping("/getAll")
-    List<YwProductsVo> getall();
+public interface ProductFegin {
+    @GetMapping("/product/getAll")
+    List<YwProductsVo> getAll();
 }

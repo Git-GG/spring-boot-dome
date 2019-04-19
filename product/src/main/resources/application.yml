@@ -1,6 +1,6 @@
 spring:
   application:
-    name: customer
+    name: product
 
   datasource:
     name: mysql_ywstore
@@ -38,9 +38,9 @@ eureka:
      defaultZone: http://127.0.0.1:8761/eureka/
 
 mybatis:
-  mapper-locations: classpath:com.feng.customer.mapper/*.xml
+  mapper-locations: classpath:com.feng.product.mapper/*.xml
     #自动定义别名
-  type-aliases-package: com.feng.customer.model
+  type-aliases-package: com.feng.product.model
   configuration:
     #驼峰命名
     map-underscore-to-camel-case: true
@@ -52,15 +52,17 @@ pagehelper:
       supportMethodsArguments: true
       params: count=countSql
 
+
+
 #日志
 debug: false
 logging:
     level:
-      com.feng.customer.mapper: debug
+      com.feng.product.mapper: debug
       org.springframework.web: info
-      com.feng.customer: debug
+      com.feng.product: debug
 #项目相关配置
 server:
 #  servlet:
-#    context-path: /customer
-  port: 8088
+#    context-path: /product
+  port: 8087

@@ -7,6 +7,8 @@ import com.feng.customer_api.bean.ResponseBean;
 
 import com.feng.customer_api.controller.CustomerController;
 import com.feng.customer_api.domain.CustomerParam;
+import com.feng.product_api.domain.YwProductsVo;
+import com.feng.product_fegin.ProductFegin;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +35,8 @@ import java.util.Map;
 public class CustomerControllerImpl extends ResponseBean implements CustomerController {
     @Autowired
     private customerService customerService;
-
+    @Autowired
+    private ProductFegin productFegin;
 
     /**
      * 登陆时如果有上级用户id 即 customerOwnerId 不为空
@@ -93,6 +96,8 @@ public class CustomerControllerImpl extends ResponseBean implements CustomerCont
         System.out.println("jifsd");
         TbCustomer customer = customerService.findOne(customerId);
         map.put("customer", customer);
+        List<YwProductsVo> all = productFegin.getAll();
+        map.put("product", all);
         return ok(map);
     }
 
