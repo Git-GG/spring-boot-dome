@@ -22,53 +22,10 @@ public class customerServiceImpl implements customerService {
 private TbCustomerMapper tbCustomerMapper;
 
     @Override
-    public TbCustomer login(String code, String encrypteData, String iv, Integer customerOwnerId, HttpServletRequest request) {
-        return null;
-    }
-
-    @Override
-    public TbCustomer loginOnStore(String code, String encrypteData, String iv, Integer customerOwnerId, HttpServletRequest request) {
-        return null;
-    }
-
-    @Override
     public TbCustomer findOne(Integer customerId) {
         TbCustomer tbCustomer = tbCustomerMapper.selectByPrimaryKey(customerId);
         return tbCustomer;
     }
 
-    @Override
-    public List<TbCustomer> queryByParam(CustomerParam param) {
-        return null;
-    }
 
-    @Override
-    public PageInfo<TbCustomer> queryOnPC(int type, String keyword, int pageNum, int pageSize) {
-        return null;
-    }
-
-    @Override
-    public PageInfo<TbCustomer> queryForwardList(int pageNum, int pageSize, String keyword) {
-        return null;
-    }
-
-    @Override
-    public boolean changeCustomerLevel(Integer customerId, Short level) {
-        return false;
-    }
-
-    @Override
-    public String createQrCode(Integer customerId, String page) {
-        return null;
-    }
-
-    @Override
-    public String createStorePromotionQrCode(Integer customerId, String page) {
-        return null;
-    }
-
-    @Override
-    public boolean updateAnnouncement(Integer customerId, String announcement) {
-        return false;
-    }
 }

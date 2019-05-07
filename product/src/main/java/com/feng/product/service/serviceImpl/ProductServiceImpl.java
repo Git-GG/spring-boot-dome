@@ -5,6 +5,7 @@ import com.feng.product.mapper.TbYwProductMapper;
 import com.feng.product.model.TbYwProduct;
 import com.feng.product.service.ProductService;
 import com.feng.product_api.domain.YwProductsVo;
+import com.github.pagehelper.PageHelper;
 import com.netflix.discovery.PropertyBasedAzToRegionMapper;
 import org.dozer.DozerBeanMapper;
 import org.dozer.spring.DozerBeanMapperFactoryBean;
@@ -22,9 +23,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<YwProductsVo> getAll() {
+        PageHelper.startPage(1,10);
         List<TbYwProduct> tbYwProducts = tbYwProductMapper.selectByExample(null);
         ArrayList<YwProductsVo> ywProductsVos = new ArrayList<>(tbYwProducts.size());
-
         for (TbYwProduct tbYwProduct : tbYwProducts) {
             YwProductsVo ywProductsVo = new YwProductsVo();
             BeanUtils.copyProperties(tbYwProduct, ywProductsVo);

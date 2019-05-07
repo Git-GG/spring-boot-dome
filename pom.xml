@@ -30,6 +30,7 @@
         <module>API/customer_api</module>
         <module>fegin</module>
         <module>product</module>
+        <module>gateway</module>
     </modules>
 
 
