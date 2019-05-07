@@ -6,10 +6,11 @@ import com.github.pagehelper.PageInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 public interface customerService {
    
 
-    TbCustomer findOne(Integer customerId);
+    Map findOne(Integer customerId);
 
 }

@@ -1,6 +1,8 @@
 package com.feng.customer_api.bean;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author bee
@@ -8,6 +10,7 @@ import lombok.Data;
  * @desc 返回值类
  **/
 @Data
+@NoArgsConstructor
 public class ResponseBean {
     private int code;
     private String massage;

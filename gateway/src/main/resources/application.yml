@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: gateway
+eureka:
+  client:
+    serviceUrl:
+     defaultZone: http://127.0.0.1:8761/eureka/
+#日志
+debug: false
+logging:
+    level:
+      com.feng.customer.mapper: debug
+      org.springframework.web: info
+      com.feng.customer: debug
+#项目相关配置
+server:
+  port: 8086

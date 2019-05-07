@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,31 +34,17 @@ import java.util.Map;
  **/
 @Slf4j
 @Api(value = "用户controller", tags = {"用户操作接口"})
-@RestController
-//@HystrixProperty()
+@Component
 public class CustomerControllerImpl extends ResponseBean implements CustomerController {
     @Autowired
     private customerService customerService;
-    @Autowired
-    private ProductFegin productFegin;
 
 
-    @ApiOperation(value = "根据用户id查询用户所有信息")
-    @GetMapping("/findOne")
     @Override
-    @HystrixCommand(fallbackMethod ="fallbackMethod")
+
     public Object findOne(@RequestParam(value = "customerId") Integer customerId) {
-       // int a=1/0;
-        Map<String, Object> map = new HashMap<>();
-        System.out.println("jifsd");
-        TbCustomer customer = customerService.findOne(customerId);
-        map.put("customer", customer);
-        List<YwProductsVo> all = productFegin.getAll();
-        map.put("product", all);
+        Map map = customerService.findOne(customerId);
         return ok(map);
     }
 
-    private Object fallbackMethod(Integer customerId) {
-        return "稍后重试";
-    }
 }
