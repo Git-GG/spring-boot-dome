@@ -11,6 +11,6 @@ import java.util.Map;
 public interface customerService {
    
 
-    Map findOne(Integer customerId);
+    Map findOne(Integer customerId,int status);
 
 }

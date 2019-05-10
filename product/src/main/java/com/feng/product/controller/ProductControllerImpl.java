@@ -20,6 +20,11 @@ public class ProductControllerImpl implements ProductController {
 
     @Override
     public List<YwProductsVo> getall() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         List<YwProductsVo> o = productService.getAll();
         return o;
     }

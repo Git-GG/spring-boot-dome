@@ -8,6 +8,7 @@ import com.feng.product_api.domain.YwProductsVo;
 import com.feng.product_fegin.ProductFegin;
 import com.github.pagehelper.PageInfo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +30,22 @@ public class customerServiceImpl implements customerService {
     private ProductFegin productFegin;
 
     @Override
-    @HystrixCommand(fallbackMethod = "fallbackMethod")
-    public Map findOne(Integer customerId) {
+//    @HystrixCommand(
+//            fallbackMethod = "fallbackMethod",
+//            commandProperties = {
+//                    @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
+//                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+//                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "60000"),
+//                    @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "70")
+//            })
+    @HystrixCommand(fallbackMethod = "fallbackMethod"
+          )
+    public Map findOne(Integer customerId,int status) {
         TbCustomer tbCustomer = tbCustomerMapper.selectByPrimaryKey(customerId);
-        List<YwProductsVo> all = productFegin.getAll();
+        List<YwProductsVo> all =null;
+        if(status==1){
+            all =productFegin.getAll();
+        }
         Map<String, Object> map = new HashMap<>();
         map.put("customer", tbCustomer);
         map.put("product", all);
@@ -40,9 +53,9 @@ public class customerServiceImpl implements customerService {
     }
 
 
-    private Map fallbackMethod(Integer customerId) {
+    private Map fallbackMethod(Integer customerId,int status) {
         Map<String, Object> map = new HashMap<>();
-        map.put("稍后重试","稍后重试");
+        map.put("稍后重试", "稍后重试");
         return map;
     }
 }

@@ -42,8 +42,8 @@ public class CustomerControllerImpl extends ResponseBean implements CustomerCont
 
     @Override
 
-    public Object findOne(@RequestParam(value = "customerId") Integer customerId) {
-        Map map = customerService.findOne(customerId);
+    public Object findOne(@RequestParam(value = "customerId") Integer customerId,int status) {
+        Map map = customerService.findOne(customerId,status);
         return ok(map);
     }
 

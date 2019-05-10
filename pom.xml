@@ -31,6 +31,7 @@
         <module>fegin</module>
         <module>product</module>
         <module>gateway</module>
+        <module>config</module>
     </modules>
 
 

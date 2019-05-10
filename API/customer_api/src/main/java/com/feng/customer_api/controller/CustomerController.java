@@ -20,7 +20,7 @@ public interface CustomerController {
 
     @ApiOperation(value = "根据用户id查询用户所有信息")
     @GetMapping("/findOne")
-     Object findOne(@RequestParam(value = "customerId")Integer customerId);
+     Object findOne(@RequestParam(value = "customerId")Integer customerId,int status);
 
 
 }
