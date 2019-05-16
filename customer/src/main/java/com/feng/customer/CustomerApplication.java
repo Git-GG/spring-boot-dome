@@ -12,7 +12,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 
-
 @MapperScan("com.feng.customer.mapper")
 @ServletComponentScan
 @EnableFeignClients(basePackages = {"com.feng.product_fegin"})

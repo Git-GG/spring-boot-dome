@@ -185,4 +185,6 @@ public interface TbCustomerMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(TbCustomer record);
+
+    TbCustomer xxx(@Param("id") int id);
 }
