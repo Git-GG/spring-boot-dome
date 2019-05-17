@@ -27,7 +27,7 @@
         <module>eureka_service</module>
         <module>customer</module>
         <module>APi</module>
-        <module>API/customer_api</module>
+        <!--<module>API/customer_api</module>-->
         <module>fegin</module>
         <module>product</module>
         <module>gateway</module>
